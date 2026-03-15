@@ -1,6 +1,9 @@
 #include <stdio.h>
 
 // Desafio Batalha Naval - MateCheck
+// Desafio Nivel Novato - CONCLUIDO
+// Desafio Nivel Aventureiro - CONCLUIDO
+// Adicionei algumas cores com ANSI para melhorar a visilidade, eu tambem ia trocar o 0 por ~ e o 3 por N mas manti assim para ficar o padrao do desafio
 
 int main() {
     //Declaracao das variaveis
@@ -17,13 +20,15 @@ int main() {
     }
 
     // Colocando navio na horizontal
-    matriz[1][1] = 3;
-    matriz[1][2] = 3;
-    matriz[1][3] = 3;
+    for (int i = 0; i < 3; i++)
+    {
+        matriz[1][i] = 3;// altera somente a linbha
+    }
     // Colocando navio na vertical
-    matriz[6][7] = 3;
-    matriz[7][7] = 3;
-    matriz[8][7] = 3;
+    for (int i = 0; i < 3; i++)
+    {
+        matriz[i][7] = 3;// altera somente a coluna
+    }
     //Colocando navio na diagonal
     for (int i = 0; i < 3; i++)
     {
@@ -37,25 +42,31 @@ int main() {
     }
 
     //Prints meramentes visuais
-    printf("=================================\n");
+    printf("\033[35m=================================\n");
     printf("      DESAFIO BATALHA NAVAL      \n");
-    printf("=================================\n");
+    printf("=================================\n\033[m");
     printf("   "); //Espaco só para arrumar visualmente as letras em cima da matriz
 
     //Imprime as letras em cima da matriz
     for (int i = 0; i < 10; i++)
     {
-        printf(" %2c", letras[i]);//Esse %2 é somente para manter fixo a largurra
+        printf("\033[32m %2c\033[m", letras[i]);//Esse %2 é somente para manter fixo a largurra
     }
     printf("\n");
 
     // imprime a matriz
     for (int i = 0; i < 10; i++)//Linhas
     {
-        printf("%2d ", i + 1);//Printa a numeracao de 1 a 10 mantendo a largura fixa
+        printf("\033[32m%2d \033[m", i + 1);//Printa a numeracao de 1 a 10 mantendo a largura fixa
         for (int j = 0; j < 10; j++)//Colunas
         {
-            printf(" %2d", matriz[i][j]);
+            if (matriz[i][j] == 3) //aqui eu fiz a condicional só para deixar bonitinho
+            {
+                printf("\033[31m %2d\033[m", matriz[i][j]);
+            }else
+            {
+                printf("\033[34m %2d\033[m", matriz[i][j]);
+            }
         }
         printf("\n");
     }
